@@ -1,0 +1,62 @@
+﻿@using BoardGamesDataAccess.Models
+@model BoardGame
+
+@{
+    ViewBag.Title = "Board game details";
+}
+
+<div>
+    <h3>@Model.Name details</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinPlayersNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinPlayersNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxPlayersNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxPlayersNumber)
+        </dd>
+
+    </dl>
+    <h1>Game requests logs</h1>
+    <table>
+        <thead>
+            <tr>
+                <td class="col-lg-3"><b>Date</b></td>
+                <td><b>Source</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Log log in ViewBag.Logs)
+            {
+                <tr>
+                    <td class="col-lg-3">
+                        @log.Date.ToString()
+                    </td>
+                    <td>
+                        @log.Source
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<p>
+    <button onclick="location.href='@Url.Action("Index", "BoardGameLite")';">Back to list</button>
+</p>

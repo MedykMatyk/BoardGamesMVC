@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BoardGamesDataAccess.Models.BoardGameLite>
+
+@{
+    ViewBag.Title = "Board games";
+}
+
+<h2>Board games</h2>
+
+<p>
+    <button onclick="location.href='@Url.Action("Create", "BoardGame")';">Create new game</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <button onclick="location.href='@Url.Action("Details", "BoardGame", new { gameId = item.Id })';">Details</button>
+            <button onclick="location.href='@Url.Action("Edit", "BoardGame", new { gameId = item.Id })';">Edit</button>
+            <button onclick="location.href='@Url.Action("Delete", "BoardGameLite", new { gameId = item.Id, gameName = item.Name })';">Delete</button>
+        </td>
+    </tr>
+}
+
+</table>
